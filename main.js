@@ -2,34 +2,21 @@ let banco = [];
 let numeroConta = 1;
 
 function inserir() {
-    let nome, idade, telefone;    
+    let nome = prompt("Digite seu nome completo: ");
+    let idade = prompt("Data de nascimento (DD/MM/AAAA): ");
+    let telefone = prompt("Telefone: ");
     let saldoInicial = 1000;
-    let tentativas = 0;
-    let contaCriada = false; // Variável de controle para verificar se a conta foi criada
-
-    while (!nome || !idade || !telefone) {  // enquanto as variaveis estiverem vazias, irá pedir novamente
-        nome = prompt("Digite seu nome completo: ");
-        idade = prompt("Data de nascimento (DD/MM/AAAA): ");
-        telefone = prompt("Telefone: ");
-        tentativas++;
-
-        if (tentativas >= 2) { // quantidade de tentativas de controle de erro!
-            alert("Número de tentativas erradas excedido!");
-            break;
-        }
-    }
-
-    // Verificar se a conta foi criada com sucesso antes de exibir o alerta
-    if (nome && idade && telefone) {
-        contaCriada = true;
-    }
-
-    if (contaCriada) {
+        
+    if (!nome || !idade || !telefone) { // quantidade de tentativas de controle de erro!
+        alert("Preencher todos os campos!");
+        
+    }else{
         alert(`Obrigado ${nome}, sua conta foi criada com sucesso!\nNº da conta ${numeroConta}`);
         banco.push(nome, idade, telefone, saldoInicial, numeroConta++);
     }
+
 }
-// em contrução
+// em construção
 
 function transferir(){
 
