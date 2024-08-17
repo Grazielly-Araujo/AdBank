@@ -1,4 +1,4 @@
-let banco = [];
+let banco = [[]];
 let numero_da_Conta = 1;
 
 function inserir() {
