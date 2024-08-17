@@ -25,31 +25,43 @@ function inserir() {
 
     
 }
-// em construção
 
 function transferir(){
 
     let num_conta_destino = parseInt(prompt("Digite o número da conta de destino: "));
     let numContaOrigem = parseInt(prompt("Digite o número da conta de origem: "));
-    let valorTransferir = parseInt(parseInt("Digite o valor da transferêcia: R$ "));
-     
-    // ainda sendo projetado!!!!!
-
-    // let indice = -1
-    // banco.forEach((buscar_conta, i)=>{
-    //     if (buscar_conta.numero_da_Conta === numero_da_conta_informado && indice === -1){
-    //         indice = i
-    //     }
-    // });
-    // if (true){
-    //     let conta = banco[indice];
-    //     alert(`Número da Conta: ${conta.numero_da_Conta}\nSaldo Atual: R$${conta.saldo}`);
-    // } else {
-
-    //     alert("Conta não encontrada!");
-    // }
-
+    let valorTransferir = parseInt(prompt("Digite o valor da transferêcia: R$ "));
     
+    // ver se colocou os numeros corretamente
+    if (isNaN(num_conta_destino) || isNaN(numContaOrigem) || isNaN(valorTransferir)) {
+        alert("coloque numeros validos");
+        return;
+    }
+
+// achar a conta no banco
+    let contaDestino = banco.find(function(conta) {
+        return conta.numero_da_Conta === num_conta_destino;
+    });
+
+    let contaOrigem = banco.find(function(conta) {
+        return conta.numero_da_Conta === numContaOrigem;
+    });
+
+    if (contaDestino && contaOrigem) {
+        // ver se a conta que vc quer enviar o valor tem saldo
+        if (contaOrigem.saldo >= valorTransferir) {
+        // faz a transferencia
+            contaOrigem.saldo -= valorTransferir;
+            contaDestino.saldo += valorTransferir;
+            alert(`Dinheiro enviado \nSaldo da conta de origem: R$${contaOrigem.saldo}\nSaldo da conta de destino: R$${contaDestino.saldo}`);
+            
+        } else {
+            alert("Saldo insuficiente.");
+        }
+    } else {
+        alert("Conta de origem ou destino não encontrada!");
+    }
+
 }
 
 function exibir(){
@@ -66,8 +78,6 @@ function exibir(){
     } else {
         alert("Conta não encontrada!");
     }
-   
-
 }
 
 // function exibirTodasAsContas(){
